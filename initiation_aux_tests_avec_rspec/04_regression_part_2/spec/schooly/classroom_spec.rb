@@ -15,7 +15,6 @@ RSpec.describe Schooly::Classroom do
 
   describe '#groups' do
     it 'return two arrays' do
-      students = Array.new(28) { Schooly::Student.new(firstname: 'John', lastname: 'Doe') }
       groups = described_class.new('3em2', students).groups
 
       expect(groups.count).to eql(2)
@@ -33,7 +32,6 @@ RSpec.describe Schooly::Classroom do
 
     context 'number of students is even' do
       it 'return two arrays with same number of students' do
-        students = Array.new(28) { Schooly::Student.new(firstname: 'John', lastname: 'Doe') }
         groups = described_class.new('3em2', students).groups
 
         expect(groups.first.count).to eql(groups.last.count)
@@ -42,7 +40,7 @@ RSpec.describe Schooly::Classroom do
 
     context 'number of students is odd' do
       it 'return two arrays with one more student in the first group' do
-        students = Array.new(27) { Schooly::Student.new(firstname: 'John', lastname: 'Doe') }
+        students << Schooly::Student.new(firstname: 'John', lastname: 'Doe')
         groups = described_class.new('3em2', students).groups
 
         expect(groups.first.count).to eql(groups.last.count + 1)

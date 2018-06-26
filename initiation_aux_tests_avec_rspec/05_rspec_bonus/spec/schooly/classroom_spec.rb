@@ -15,15 +15,14 @@ RSpec.describe Schooly::Classroom do
 
   describe '.partner?' do
     described_class::PARTNERS.each do |school_name|
-      it "return true for #{school_name} schooly partners" do
-        expect(described_class.partner?(school_name)).to be_true
+      it "return true for #{school_name} schooly partner" do
+        expect(described_class.partner?(school_name)).to be true
       end
     end
   end
 
   describe '#groups' do
     it 'return two arrays' do
-      students = Array.new(28) { Schooly::Student.new(firstname: 'John', lastname: 'Doe') }
       groups = described_class.new('3em2', students).groups
 
       expect(groups.count).to eql(2)
@@ -41,7 +40,6 @@ RSpec.describe Schooly::Classroom do
 
     context 'number of students is even' do
       it 'return two arrays with same number of students' do
-        students = Array.new(28) { Schooly::Student.new(firstname: 'John', lastname: 'Doe') }
         groups = described_class.new('3em2', students).groups
 
         expect(groups.first.count).to eql(groups.last.count)
@@ -50,7 +48,7 @@ RSpec.describe Schooly::Classroom do
 
     context 'number of students is odd' do
       it 'return two arrays with one more student in the first group' do
-        students = Array.new(27) { Schooly::Student.new(firstname: 'John', lastname: 'Doe') }
+        students << Schooly::Student.new(firstname: 'John', lastname: 'Doe')
         groups = described_class.new('3em2', students).groups
 
         expect(groups.first.count).to eql(groups.last.count + 1)
