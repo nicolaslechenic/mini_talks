@@ -1,5 +1,13 @@
 module Schooly
   class Classroom
+    class << self
+      PARTNERS = ['Robert Doisneau', 'Antoine Condorcet'].freeze
+
+      def partner?(school_name)
+        PARTNERS.include?(school_name) ? 'École partenaire' : 'École autonome'
+      end
+    end
+
     def initialize(title, students)
       @title    = title
       @students = students

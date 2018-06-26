@@ -13,6 +13,14 @@ RSpec.describe Schooly::Classroom do
     end
   end
 
+  describe '.partner?' do
+    described_class::PARTNERS.each do |school_name|
+      it "return true for #{school_name} schooly partners" do
+        expect(described_class.partner?(school_name)).to be_true
+      end
+    end
+  end
+
   describe '#groups' do
     it 'return two arrays' do
       students = Array.new(28) { Schooly::Student.new(firstname: 'John', lastname: 'Doe') }
