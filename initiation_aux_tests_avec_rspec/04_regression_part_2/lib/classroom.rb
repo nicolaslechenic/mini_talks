@@ -8,10 +8,11 @@ module Schooly
     end
 
     # Split students in two groups
+    # sorted by alphabetical order
     #
     # @return [Array<Array>] with students groups
     def groups
-      students.each_slice((students.count / 2.0).round).to_a
+      students.sort_by(&:fullname).each_slice((students.count/2.0).round).to_a
     end
   end
 end
