@@ -17,7 +17,7 @@ module TinySpec
     def feedback(symbol)
       color = (symbol == '.' ? 32 : 31)
 
-      print "\e[#{color}m#{symbol}\e[0m"
+      puts "\e[#{color}m#{symbol}\e[0m"
     end
   end
 end
